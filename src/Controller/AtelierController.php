@@ -32,6 +32,7 @@ final class AtelierController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+			$atelier->setInstructeur($this->getUser());
             $entityManager->persist($atelier);
             $entityManager->flush();
 
