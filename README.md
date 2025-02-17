@@ -14,3 +14,9 @@ symfony composer require --dev symfony/maker-bundle
 php bin/console doctrine:database:create
 php bin/console make:migration
 php bin/console doctrine:migrations:migrate
+
+3)
+
+symfony composer require fakerphp/faker orm-fixtures
+symfony console make:fixture
+php bin/console doctrine:fixtures:load
