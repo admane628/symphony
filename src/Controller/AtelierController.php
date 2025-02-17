@@ -25,6 +25,8 @@ final class AtelierController extends AbstractController
     #[Route('/new', name: 'app_atelier_new', methods: ['GET', 'POST'])]
     public function new(Request $request, EntityManagerInterface $entityManager): Response
     {
+		$this->denyAccessUnlessGranted("IS_AUTHENTICATED_FULLY");
+		
         $atelier = new Atelier();
         $form = $this->createForm(AtelierType::class, $atelier);
         $form->handleRequest($request);
