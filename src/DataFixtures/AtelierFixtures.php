@@ -9,12 +9,21 @@ use Faker;
 use App\Entity\Atelier;
 use App\Entity\User;
 
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
+
 class AtelierFixtures extends Fixture
 {
+	private $userPasswordHasher;
+
+    public function __construct (UserPasswordHasherInterface $userPasswordHasherInterface) 
+    {
+        $this->userPasswordHasher = $userPasswordHasherInterface;
+    }
+    
     public function load(ObjectManager $manager): void
     {
 		$faker = Faker\Factory::create('fr_FR');
-        
+		        
         $ateliers = Array();
 	    for ($i = 0; $i < 8; $i++) {
 		   $ateliers[$i] = new Atelier();
@@ -24,7 +33,7 @@ class AtelierFixtures extends Fixture
 		   $user = new User();
 		   $user->setNom("nom " . $i);
 		   $user->setPrenom("prenom " . $i);
-		   $user->setPassword("secret");
+		   $user->setPassword($this->userPasswordHasher->hashPassword($user, "secret"));
 
 		   $manager->persist($user);
 		   
