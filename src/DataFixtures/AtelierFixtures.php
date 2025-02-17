@@ -7,6 +7,7 @@ use Doctrine\Persistence\ObjectManager;
 use Faker;
 
 use App\Entity\Atelier;
+use App\Entity\User;
 
 class AtelierFixtures extends Fixture
 {
@@ -19,7 +20,15 @@ class AtelierFixtures extends Fixture
 		   $ateliers[$i] = new Atelier();
 		   $ateliers[$i]->setNom($faker->sentence($nbWords = 6, $variableNbWords = true));
 		   $ateliers[$i]->setDescription($faker->sentence($nbWords = 30, $variableNbWords = true));
+		   
+		   $user = new User();
+		   $user->setNom("nom " . $i);
+		   $user->setPrenom("prenom " . $i);
+		   $user->setPassword("secret");
 
+		   $manager->persist($user);
+		   
+		   $ateliers[$i]->setInstructeur($user);
 		   $manager->persist($ateliers[$i]);
 	    }
 

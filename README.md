@@ -35,3 +35,10 @@ php bin/console make:migration
 php bin/console doctrine:migrations:migrate
 php bin/console make:security:form-login
 symfony console make:registration-form
+
+8)
+
+php bin/console make:entity
+php bin/console make:migration
+php bin/console doctrine:migrations:migrate
+php bin/console doctrine:fixtures:load
