@@ -58,6 +58,8 @@ class AdminController extends AbstractController
     #[Route('/admin/delete-instructeur/{id}', name: 'delete_instructeur', methods: ['GET'])]
     public function delete(User $user, EntityManagerInterface $entityManager): Response
     {
+		$this->denyAccessUnlessGranted('ROLE_ADMIN');
+		
 		$entityManager->remove($user);
 		$entityManager->flush();
 
@@ -67,6 +69,8 @@ class AdminController extends AbstractController
     #[Route('/admin/makeadmin/{id}', name: 'makeadmin', methods: ['GET'])]
     public function makeadmin(User $user, EntityManagerInterface $entityManager): Response
     {	
+		$this->denyAccessUnlessGranted('ROLE_ADMIN');
+		
 		$user->setRoles(["ROLE_ADMIN", "ROLE_INSTRUCTEUR"]);
 		$entityManager->persist($user);
 		$entityManager->flush();
@@ -77,6 +81,8 @@ class AdminController extends AbstractController
     #[Route('/admin/unmakeadmin/{id}', name: 'unmakeadmin', methods: ['GET'])]
     public function unmakeadmin(User $user, EntityManagerInterface $entityManager): Response
     {	
+		$this->denyAccessUnlessGranted('ROLE_ADMIN');
+		
 		$user->setRoles(["ROLE_INSTRUCTEUR"]);
 		$entityManager->persist($user);
 		$entityManager->flush();
