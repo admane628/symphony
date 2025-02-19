@@ -22,7 +22,7 @@
                 <td>{{ inscription.atelier.description }}</td>
                 <td>
                     <a href="{{ path('app_atelier_show', {'id': inscription.atelier.id}) }}">show</a>
-                    <a href="{{ path('app_atelier_edit', {'id': inscription.atelier.id}) }}">edit</a>
+                    <a href="{{ path('desinscrire', {'id': inscription.atelier.id}) }}">Desinscrire</a>
                 </td>
             </tr>
         {% else %}

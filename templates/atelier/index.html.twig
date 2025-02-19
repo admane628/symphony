@@ -3,6 +3,13 @@
 {% block title %}Atelier index{% endblock %}
 
 {% block body %}
+
+{% if app.user %}
+	{% if "ROLE_APPRENTI" in app.user.roles %}
+		<a href="{{ path('mesinscriptions') }}">Mes inscriptions</a>
+	{% endif %}
+{% endif %}
+
     <h1>Atelier index</h1>
 
     <table class="table">
@@ -22,7 +29,21 @@
                 <td>{{ atelier.description }}</td>
                 <td>
                     <a href="{{ path('app_atelier_show', {'id': atelier.id}) }}">show</a>
-                    <a href="{{ path('app_atelier_edit', {'id': atelier.id}) }}">edit</a>
+                    
+                    {% if app.user %}
+						{% if "ROLE_APPRENTI" not in app.user.roles %}
+							<a href="{{ path('app_atelier_edit', {'id': atelier.id}) }}">edit</a>
+							<a href="{{ path('inscrits', {'id': atelier.id}) }}">Inscrits</a>
+						{% else %}
+						
+							{% if app.user not in atelier.getInscriptionsUsers() %}
+								<a href="{{ path('inscrire', {'id': atelier.id}) }}">Inscrire</a>
+							{% else %}
+								<a href="{{ path('desinscrire', {'id': atelier.id}) }}">Desinscrire</a>
+							{% endif %}
+							
+						{% endif %}
+                    {% endif %}
                 </td>
             </tr>
         {% else %}
@@ -32,6 +53,10 @@
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('app_atelier_new') }}">Create new</a>
+	
+	{% if app.user %}
+		{% if "ROLE_APPRENTI" not in app.user.roles %}
+			<a href="{{ path('app_atelier_new') }}">Create new</a>
+		{% endif %}
+	{% endif %}
 {% endblock %}

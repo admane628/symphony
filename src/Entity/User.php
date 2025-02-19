@@ -80,7 +80,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     {
         $roles = $this->roles;
 
-        $roles[] = 'ROLE_INSTRUCTEUR';
+        //$roles[] = 'ROLE_INSTRUCTEUR';
 
         return array_unique($roles);
     }

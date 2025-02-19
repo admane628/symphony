@@ -83,6 +83,15 @@ class Atelier
     {
         return $this->inscriptions;
     }
+    
+    public function getInscriptionsUsers(): Collection
+    {
+		$users = new ArrayCollection();
+		foreach ($this->inscriptions as $inscription){
+			$users->add($inscription->getUser());
+		}
+        return $users;
+    }
 
     public function addInscription(Inscription $inscription): static
     {
