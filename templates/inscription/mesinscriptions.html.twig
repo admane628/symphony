@@ -23,6 +23,13 @@
                 <td>
                     <a href="{{ path('app_atelier_show', {'id': inscription.atelier.id}) }}">show</a>
                     <a href="{{ path('desinscrire', {'id': inscription.atelier.id}) }}">Desinscrire</a>
+                    
+                    <a href="{{ path('note', {'id': inscription.atelier.id, 'n': 0}) }}">Noter 0</a>
+                    <a href="{{ path('note', {'id': inscription.atelier.id, 'n': 1}) }}">Noter 1</a>
+                    <a href="{{ path('note', {'id': inscription.atelier.id, 'n': 2}) }}">Noter 2</a>
+                    <a href="{{ path('note', {'id': inscription.atelier.id, 'n': 3}) }}">Noter 3</a>
+                    <a href="{{ path('note', {'id': inscription.atelier.id, 'n': 4}) }}">Noter 4</a>
+                    <a href="{{ path('note', {'id': inscription.atelier.id, 'n': 5}) }}">Noter 5</a>
                 </td>
             </tr>
         {% else %}

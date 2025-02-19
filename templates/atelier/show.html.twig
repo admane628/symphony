@@ -24,6 +24,8 @@
 
     <a href="{{ path('app_atelier_index') }}">back to list</a>
     
+    NOTES: {{ dump(notes) }}
+    
     {% if app.user %}
 		{% if "ROLE_APPRENTI" not in app.user.roles %}
 			<a href="{{ path('app_atelier_edit', {'id': atelier.id}) }}">edit</a>
