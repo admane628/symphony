@@ -71,3 +71,7 @@ php bin/console make:entity
 php bin/console make:migration
 
 php bin/console doctrine:migrations:migrate
+
+15)
+
+php bin/console doctrine:fixtures:load

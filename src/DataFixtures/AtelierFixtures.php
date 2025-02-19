@@ -33,6 +33,7 @@ class AtelierFixtures extends Fixture
 		   $user = new User();
 		   $user->setNom("nom " . $i);
 		   $user->setPrenom("prenom " . $i);
+		   $user->setRoles(["ROLE_INSTRUCTEUR"]);
 		   $user->setPassword($this->userPasswordHasher->hashPassword($user, "secret"));
 
 		   $manager->persist($user);
